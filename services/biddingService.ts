@@ -1,5 +1,5 @@
-﻿import { marketplaceStore } from "@/lib/store/mockStore";
-import { Bid, BidItem } from "@/types";
+import { marketplaceStore } from "@/lib/store/mockStore";
+import { Bid, BidItem, DocumentAttachment } from "@/types";
 
 export const biddingService = {
   getBidsForRequirement(requirementId: string, viewingOrgId?: string): Bid[] {
@@ -11,13 +11,23 @@ export const biddingService = {
   },
 
   submitBid(
-    data: Omit<Bid, "id" | "created_at" | "updated_at" | "version" | "status">,
-    items: Omit<BidItem, "id" | "bid_id">[]
+    data: any,
+    items?: Omit<BidItem, "id" | "bid_id">[],
+    attachments?: DocumentAttachment[]
   ): Bid {
-    return marketplaceStore.submitBid(data, items);
+    const resolvedItems = items || data.items || [];
+    const resolvedAttachments = attachments || data.attachments || [];
+    return marketplaceStore.submitBid(
+      {
+        ...data,
+        attachments: resolvedAttachments,
+      },
+      resolvedItems
+    );
   },
 
   acceptBid(bidId: string, buyerUserId?: string) {
     return marketplaceStore.acceptBid(bidId, buyerUserId);
   }
 };
+

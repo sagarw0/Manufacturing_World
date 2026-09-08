@@ -1,5 +1,5 @@
-﻿import { marketplaceStore } from "@/lib/store/mockStore";
-import { Requirement, RequirementItem } from "@/types";
+import { marketplaceStore } from "@/lib/store/mockStore";
+import { Requirement, RequirementItem, DocumentAttachment } from "@/types";
 
 export const requirementService = {
   getRequirements(viewerOrgId?: string): Requirement[] {
@@ -12,12 +12,20 @@ export const requirementService = {
 
   createRequirement(
     data: Omit<Requirement, "id" | "created_at" | "updated_at">,
-    items: Omit<RequirementItem, "id" | "requirement_id">[]
+    items: Omit<RequirementItem, "id" | "requirement_id">[],
+    attachments?: DocumentAttachment[]
   ): Requirement {
-    return marketplaceStore.createRequirement(data, items);
+    return marketplaceStore.createRequirement(
+      {
+        ...data,
+        attachments: attachments || data.attachments || [],
+      },
+      items
+    );
   },
 
   publishRequirement(id: string): Requirement {
     return marketplaceStore.publishRequirement(id);
   }
 };
+

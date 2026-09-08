@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { useParams } from "next/navigation";
@@ -160,6 +160,39 @@ export default function BidDetailPage() {
         {bid.notes && (
           <div className="text-slate-500 pt-2 border-t border-slate-100 dark:border-slate-800">
             <span className="font-semibold text-slate-700 dark:text-slate-300">Notes:</span> {bid.notes}
+          </div>
+        )}
+
+        {/* Attached Proposal Documents */}
+        {bid.attachments && bid.attachments.length > 0 && (
+          <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2">
+            <span className="font-semibold text-slate-700 dark:text-slate-300 block">
+              Attached Quotation Documents & Test Reports ({bid.attachments.length}):
+            </span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              {bid.attachments.map((att) => (
+                <div
+                  key={att.id}
+                  className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60"
+                >
+                  <div className="min-w-0 pr-2">
+                    <span className="font-medium text-slate-800 dark:text-slate-200 truncate block text-xs">
+                      {att.name}
+                    </span>
+                    <span className="text-[10px] text-slate-400 uppercase font-mono">
+                      {att.file_category} • {(att.size / 1024).toFixed(0)} KB
+                    </span>
+                  </div>
+                  <a
+                    href={att.url}
+                    download={att.name}
+                    className="text-blue-600 dark:text-blue-400 hover:underline text-xs font-semibold shrink-0"
+                  >
+                    Download
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>

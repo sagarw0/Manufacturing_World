@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { requirementService } from "@/services/requirementService";
 import { organizationService } from "@/services/organizationService";
 import { Plus, Trash2, ArrowLeft } from "lucide-react";
+import { FileUploadZone } from "@/components/common/FileUploadZone";
+import { DocumentAttachment } from "@/types/database.types";
 import Link from "next/link";
 
 export default function CreateRequirementPage() {
@@ -18,6 +20,7 @@ export default function CreateRequirementPage() {
   const [requiredByDate, setRequiredByDate] = useState("2026-12-15");
   const [deadline, setDeadline] = useState("2026-11-15T18:00");
   const [commercialTerms, setCommercialTerms] = useState("Net 30 Days payment; Door delivery DAP; MTC required");
+  const [attachments, setAttachments] = useState<DocumentAttachment[]>([]);
 
   const [items, setItems] = useState([
     {
@@ -76,7 +79,8 @@ export default function CreateRequirementPage() {
         status: "draft",
         commercial_terms: commercialTerms,
       },
-      items
+      items,
+      attachments
     );
 
     // Auto-publish for immediate marketplace demonstration

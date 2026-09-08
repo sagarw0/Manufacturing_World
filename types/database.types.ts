@@ -140,6 +140,7 @@ export interface Category {
 }
 
 export interface Requirement {
+  attachments?: DocumentAttachment[];
   id: string;
   buyer_org_id: string;
   category_id?: string;
@@ -182,6 +183,7 @@ export interface RequirementVendor {
 }
 
 export interface Bid {
+  attachments?: DocumentAttachment[];
   id: string;
   requirement_id: string;
   vendor_org_id: string;
@@ -296,4 +298,15 @@ export interface AuditLog {
   ip_address?: string;
   created_at: string;
   actor?: Profile;
+}
+
+
+export interface DocumentAttachment {
+  id: string;
+  name: string;
+  url: string;
+  size: number;
+  mime_type: string;
+  file_category?: 'drawing' | 'specification' | 'cad_model' | 'quote' | 'test_cert' | 'other';
+  uploaded_at: string;
 }
