@@ -40,7 +40,7 @@ Manufacturing World connects industrial buyers and manufacturing vendors. Vendor
 ## 📁 Repository Structure
 
 ```
-Manufacturing_world/
+Manufacturing_World/
 ├── app/
 │   ├── (dashboard)/
 │   │   ├── layout.tsx
@@ -163,6 +163,6 @@ Run the version-controlled SQL migrations in sequence against your Supabase inst
 
 ## 📦 GitHub Repository
 
-- **Repository**: `Manufacturing_world`
-- **Owner ID**: `akashw088`
-- **Remote URL**: `https://github.com/akashw088/Manufacturing_world.git`
+- **Repository**: `Manufacturing_World`
+- **Owner ID**: `sagarw0`
+- **Remote URL**: `https://github.com/sagarw0/Manufacturing_World.git`
