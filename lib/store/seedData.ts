@@ -201,3 +201,24 @@ export const initialBidItems: BidItem[] = [
   { id: "bi-01", bid_id: "99999999-9999-9999-9999-999999999901", requirement_item_id: "88888888-8888-8888-8888-888888888801", unit_price: 4650.00, quantity: 500, total: 2325000.00, remarks: "Mazak 5-Axis machined + clear hard anodized" },
   { id: "bi-02", bid_id: "99999999-9999-9999-9999-999999999901", requirement_item_id: "88888888-8888-8888-8888-888888888802", unit_price: 1850.00, quantity: 500, total: 925000.00, remarks: "Doosan turn-milled with deburred chamfers" }
 ];
+
+export const initialNotifications = [
+  {
+    id: "notif-01",
+    organization_id: "44444444-4444-4444-4444-444444444401",
+    type: "bid_submitted",
+    title: "New Quotation Received",
+    message: "PrecisionTech Solutions submitted a quotation for requirement 'Precision CNC Machined EV Motor Housing & Inverter End-Caps'.",
+    link: "/evaluation/77777777-7777-7777-7777-777777777701",
+    created_at: new Date(Date.now() - 3600000).toISOString(),
+  },
+  {
+    id: "notif-02",
+    organization_id: "44444444-4444-4444-4444-444444444402",
+    type: "new_requirement",
+    title: "Matching Requirement Available",
+    message: "Apex Mobility published a new RFQ matching your 5-Axis CNC Milling capabilities.",
+    link: "/requirements/77777777-7777-7777-7777-777777777701",
+    created_at: new Date(Date.now() - 7200000).toISOString(),
+  }
+];

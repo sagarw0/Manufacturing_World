@@ -33,6 +33,7 @@ import {
   initialRequirementVendors,
   initialBids,
   initialBidItems,
+  initialNotifications,
 } from "./seedData";
 
 class MarketplaceStore {
@@ -55,7 +56,7 @@ class MarketplaceStore {
   evaluations: BidEvaluation[] = [];
   purchaseOrders: PurchaseOrder[] = [];
   purchaseOrderItems: PurchaseOrderItem[] = [];
-  notifications: Notification[] = [];
+  notifications: Notification[] = [...initialNotifications];
   auditLogs: AuditLog[] = [
     {
       id: "al-01",
@@ -565,6 +566,17 @@ class MarketplaceStore {
 
     const isAuthorized = hasAcceptedBid || hasActivePO;
     return resolveContactPrivacy(contact, isAuthorized);
+  }
+
+
+  getNotifications(orgId?: string) {
+    const target = orgId || this.currentOrganizationId;
+    return this.notifications.filter((n) => !n.organization_id || n.organization_id === target);
+  }
+
+  markNotificationRead(id: string) {
+    const n = this.notifications.find((notif) => notif.id === id);
+    if (n) { n.read_at = new Date().toISOString(); }
   }
 
   getAuditLogs() {
